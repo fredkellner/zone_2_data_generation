@@ -1,0 +1,4 @@
+pandas
+garminconnect
+fsspec
+gcsfs
