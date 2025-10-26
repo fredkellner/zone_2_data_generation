@@ -52,12 +52,12 @@ for subtract_day in (range(0, datetime.datetime.today().timetuple().tm_yday)):
       activity = details.get('activityDetailMetrics')
       acitiviy_metrics = details.get('metricDescriptors')
       for metric in activity:
-        for metric in acitiviy_metrics:
-          if metric['key'] == 'directHeartRate':
-            hr_index = metric['metricsIndex']
-            temp_hr_list.append(metric['metrics'][hr_index])
+        for activity_metric in acitiviy_metrics:
+          if activity_metric['key'] == 'directHeartRate':
+            hr_index = activity_metri['metricsIndex']
+            temp_hr_list.append(activity_metric['metrics'][hr_index])
           if metric['key'] == 'directTimestamp':
-            time_index = metric['metricsIndex']
+            time_index = activity_metric['metricsIndex']
             timestamp_list.append(metric['metrics'][time_index])
       hr_val_df = pd.DataFrame(zip(timestamp_list, temp_hr_list), columns=['timestamp', 'hr'])
       # add acitivty ID, duration start and end date and
