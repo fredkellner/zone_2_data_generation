@@ -70,4 +70,4 @@ for subtract_day in (range(0, datetime.datetime.today().timetuple().tm_yday)):
 final_hr_df = pd.concat(temp_df_list)
 final_hr_df['date'] = pd.to_datetime(final_hr_df['date'])
 zone2_df = final_hr_df.query(f'hr <= 130').groupby(['activityID'])['hr'].count().reset_index().rename(columns={'hr': 'zone2'})
-final_hr_df['maf_hr'] = final_hr_df['date'].apply(lambda  x: compute_maf_hr_on_birthdate(x.strftime("%Y-%m-%d") , "1975-01-29"))
+final_hr_df['maf_hr'] = final_hr_df['date'].apply(lambda  x: compute_maf_hr_on_birthdate(x.strftime("%Y-%m-%d") , birthday))
