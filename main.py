@@ -30,7 +30,7 @@ def compute_acitivity_duration(activity):
    end_activity = int(activity['beginTimestamp'] + (activity['duration']*1000))
    duration = (
         datetime.datetime.fromtimestamp(end_activity/1000) 
-     - datetime.datetime.fromtimestamp(activity['beginTimestamp']/100).seconds  // 60 % 60  
+     - datetime.datetime.fromtimestamp(activity['beginTimestamp']/100).seconds  // 60 % 60) 
 
 temp_df_list = []
 for subtract_day in (range(0, datetime.datetime.today().timetuple().tm_yday)):
