@@ -8,6 +8,7 @@ import garminconnect
 email = os.getenv('email')
 password = os.getenv('garmin_pw')
 birthday = os.getenv('birthday')
+bucket_name = os.getenv("BUCKET_NAME")
 
 garmin = garminconnect.Garmin(email, password)
 garmin.login()
@@ -71,3 +72,4 @@ final_hr_df = pd.concat(temp_df_list)
 final_hr_df['date'] = pd.to_datetime(final_hr_df['date'])
 zone2_df = final_hr_df.query(f'hr <= 130').groupby(['activityID'])['hr'].count().reset_index().rename(columns={'hr': 'zone2'})
 final_hr_df['maf_hr'] = final_hr_df['date'].apply(lambda  x: compute_maf_hr_on_birthdate(x.strftime("%Y-%m-%d") , birthday))
+final_hr_df.to_csv(f"gs://{bucket_name}/zone_2_hr_data.csv",  index=False, storage_options={"token": None})
